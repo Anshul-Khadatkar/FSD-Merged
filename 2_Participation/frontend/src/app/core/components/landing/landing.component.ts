@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FeedbackFormComponent } from '../../../shared/feedbacks/components/feedback-form/feedback-form.component';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FeedbackFormComponent],
 })
 export class LandingComponent implements OnInit {
   username = '';
@@ -37,6 +38,12 @@ export class LandingComponent implements OnInit {
   navigateToRegister() {
     this.router.navigate(['/register']);
   }
+
+  showFeedback = false;
+
+openFeedback() { this.showFeedback = true; }
+closeFeedback() { this.showFeedback = false; }
+
 
   logout(): void {
     localStorage.removeItem('authToken');

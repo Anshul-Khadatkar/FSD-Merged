@@ -15,20 +15,21 @@ echo ⏳ Waiting 5 seconds...
 timeout /t 5 /nobreak >nul
 
 echo 📋 Starting Registration Service Backend...
-start "Registration Backend" cmd /k "cd 1_Registration\fsd && ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8081"
+start "Registration Backend" cmd /k "cd 1_Registration\fsd && ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8080"
 
 echo ⏳ Waiting 10 seconds...
 timeout /t 10 /nobreak >nul
 
 echo 📋 Starting Participation Service Backend...
-start "Participation Backend" cmd /k "cd 2_Participation\backend && ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8082"
+start "Participation Backend" cmd /k "cd 2_Participation\backend && ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8081"
 
 echo.
 echo 🎉 All services are starting!
 echo.
 echo 📊 Service URLs:
 echo   Main Entry Point: http://localhost:4200
-echo   Participation Form: http://localhost:4201 (auto-redirected after login)
+echo   Participation & Feedback Form: http://localhost:4201
+echo   Participation & Feedback API: http://localhost:8081
 echo.
 echo 👤 User Flow:
 echo   1. Go to http://localhost:4200

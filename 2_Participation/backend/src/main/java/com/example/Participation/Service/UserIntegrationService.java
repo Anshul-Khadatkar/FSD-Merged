@@ -1,10 +1,12 @@
-package com.example.Participation.Service;
+package com.example.participation.Service;
 
-import com.example.Participation.DTO.UserDTO;
-import com.example.Participation.Entity.RegisteredUser;
-import com.example.Participation.Repository.RegisteredUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.participation.DTO.UserDTO;
+import com.example.participation.Entity.RegisteredUser;
+import com.example.participation.Repository.RegisteredUserRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

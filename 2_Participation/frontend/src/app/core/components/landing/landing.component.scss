@@ -378,3 +378,47 @@ $transition: all 0.3s ease;
     margin: 0 0 1rem 0;
   }
 }
+
+
+// Feedback modal 
+/* Modal Overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); // semi-transparent dark overlay
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Feedback form wrapper */
+app-feedback-form {
+  position: relative; /* so close button is relative to form */
+  max-width: 600px;
+  width: 90%;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.icon{
+  color: black;
+  font-size: 15px;
+}

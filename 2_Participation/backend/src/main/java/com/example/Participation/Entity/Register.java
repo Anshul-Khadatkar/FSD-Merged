@@ -1,4 +1,4 @@
-package com.example.Participation.Entity;
+package com.example.participation.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

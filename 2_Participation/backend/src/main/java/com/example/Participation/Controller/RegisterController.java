@@ -1,8 +1,9 @@
-package com.example.Participation.Controller;
+package com.example.participation.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import com.example.Participation.Repository.RegisterRepository;
-import com.example.Participation.Entity.Register;
+
+import com.example.participation.Entity.Register;
+import com.example.participation.Repository.RegisterRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.example.Participation.Config;
+package com.example.participation.Config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

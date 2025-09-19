@@ -1,13 +1,12 @@
-package com.example.Participation;
+package com.example.participation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ParticipationApplicationTests {
 
+public class ParticipationApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

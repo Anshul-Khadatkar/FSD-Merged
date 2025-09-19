@@ -1,0 +1,50 @@
+2025-09-19T11:58:04.959+05:30  INFO 27904 --- [participation-service] [main] c.e.P.ParticipationApplication           : Starting ParticipationApplication using Java 17.0.12 with PID 27904 (D:\FSD-Merged\2_Participation\backend\target\classes started by dalaw in D:\FSD-Merged)
+2025-09-19T11:58:04.963+05:30 DEBUG 27904 --- [participation-service] [main] c.e.P.ParticipationApplication           : Running with Spring Boot v3.4.4, Spring v6.2.5
+2025-09-19T11:58:04.967+05:30  INFO 27904 --- [participation-service] [main] c.e.P.ParticipationApplication           : No active profile set, falling back to 1 default profile: "default"
+2025-09-19T11:58:07.076+05:30  INFO 27904 --- [participation-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-19T11:58:07.221+05:30  INFO 27904 --- [participation-service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 130 ms. Found 3 JPA repository interfaces.
+2025-09-19T11:58:08.107+05:30  INFO 27904 --- [participation-service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2025-09-19T11:58:08.134+05:30  INFO 27904 --- [participation-service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-19T11:58:08.135+05:30  INFO 27904 --- [participation-service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.39]
+2025-09-19T11:58:08.239+05:30  INFO 27904 --- [participation-service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-19T11:58:08.241+05:30  INFO 27904 --- [participation-service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3176 ms
+2025-09-19T11:58:08.497+05:30  INFO 27904 --- [participation-service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-19T11:58:08.577+05:30  INFO 27904 --- [participation-service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.11.Final
+2025-09-19T11:58:08.633+05:30  INFO 27904 --- [participation-service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-19T11:58:08.968+05:30  INFO 27904 --- [participation-service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-19T11:58:09.018+05:30  INFO 27904 --- [participation-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-19T11:58:09.419+05:30  INFO 27904 --- [participation-service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4005e485
+2025-09-19T11:58:09.421+05:30  INFO 27904 --- [participation-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-19T11:58:09.525+05:30  INFO 27904 --- [participation-service] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-19T11:58:10.949+05:30  INFO 27904 --- [participation-service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-19T11:58:11.025+05:30  INFO 27904 --- [participation-service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-19T11:58:11.756+05:30  WARN 27904 --- [participation-service] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'feedbackController' defined in file [D:\FSD-Merged\2_Participation\backend\target\classes\com\example\feedback\Controller\FeedbackController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.example.feedback.Repository.FeedbackRepository' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-09-19T11:58:11.757+05:30  INFO 27904 --- [participation-service] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-19T11:58:11.764+05:30  INFO 27904 --- [participation-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-09-19T11:58:11.773+05:30  INFO 27904 --- [participation-service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-09-19T11:58:11.788+05:30  INFO 27904 --- [participation-service] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2025-09-19T11:58:11.833+05:30  INFO 27904 --- [participation-service] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-09-19T11:58:11.874+05:30 ERROR 27904 --- [participation-service] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.example.feedback.Controller.FeedbackController required a bean of type 'com.example.feedback.Repository.FeedbackRepository' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.example.feedback.Repository.FeedbackRepository' in your configuration.
+

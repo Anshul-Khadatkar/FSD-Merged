@@ -1,11 +1,12 @@
-package com.example.Participation.Controller;
+package com.example.participation.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import com.example.Participation.Repository.ParticipationRepository;
-import com.example.Participation.Entity.Participation;
-import com.example.Participation.DTO.UserDTO;
-import com.example.Participation.Service.AuthenticationService;
-import com.example.Participation.Service.UserIntegrationService;
+
+import com.example.participation.DTO.UserDTO;
+import com.example.participation.Entity.Participation;
+import com.example.participation.Repository.ParticipationRepository;
+import com.example.participation.Service.AuthenticationService;
+import com.example.participation.Service.UserIntegrationService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
