@@ -1,7 +1,9 @@
-package com.example.Participation.Repository;
+package com.example.participation.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.Participation.Entity.Register;
+
+import com.example.participation.Entity.Register;
+
 import java.util.Optional;
 
 public interface RegisterRepository extends JpaRepository<Register, Long> {

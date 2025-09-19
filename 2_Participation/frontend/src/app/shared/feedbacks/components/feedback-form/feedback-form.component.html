@@ -1,0 +1,47 @@
+<div class="body">
+  <div class="feedback-container">
+    <button class="close-btn" (click)="closeFeedback()">
+      <i class="fa-solid fa-xmark icon"></i>
+    </button>
+    <h2>Submit Your Feedback</h2>
+
+    <!-- Feedback Form -->
+    <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
+      <!-- Category Dropdown -->
+      <label for="category">Select Category</label>
+      <select id="category" formControlName="category">
+        <option value="" disabled selected>Select a category</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+      <div *ngIf="feedbackForm.get('category')?.invalid && feedbackForm.get('category')?.touched">
+        <small class="error">Please select a category</small>
+      </div>
+
+      <!-- Message Field -->
+      <label for="message">Message</label>
+      <textarea id="message" formControlName="message" placeholder="Your Feedback"></textarea>
+      <div *ngIf="feedbackForm.get('message')?.errors?.['required'] && feedbackForm.get('message')?.touched">
+        <small class="error">Message is required</small>
+      </div>
+      <div *ngIf="feedbackForm.get('message')?.errors?.['minlength'] && feedbackForm.get('message')?.touched">
+        <small class="error">Message must be at least 10 characters long</small>
+      </div>
+
+      <!-- 5-Star Rating -->
+      <label>Rate Category</label>
+      <div class="star-rating">
+        <span *ngFor="let star of [1,2,3,4,5]" (click)="setRating(star)">
+          <i class="fa" [ngClass]="star <= rating ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i>
+        </span>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="feedbackForm.invalid" class="submit-btn">Submit</button>
+
+      <!-- Success Message -->
+      <div *ngIf="showSuccessMessage" class="success-message">
+        Thank you for your feedback!
+      </div>
+    </form>
+  </div>
+</div>

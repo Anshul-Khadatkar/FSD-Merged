@@ -1,11 +1,13 @@
-package com.example.Participation.Service;
+package com.example.participation.Service;
 
-import com.example.Participation.Config.ServiceConfig;
-import com.example.Participation.DTO.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.example.participation.Config.ServiceConfig;
+import com.example.participation.DTO.UserDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

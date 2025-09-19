@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  font-family: 'Poppins', sans-serif;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-container {
+  position: relative;
+  width: 90%;
+  max-width: 600px; 
+  padding: 2.5rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s ease;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;     
+  box-sizing: border-box;
+}
+
+/* Make sure form scales nicely on small screens */
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+  textarea {
+    height: 80px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+}
+
+
+h2 {
+  color: #4b7a42;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-top: 20px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: poppins;
+  font-size: 16px;
+}
+
+/* textarea {
+  height: 100px;
+  width: 520px;
+} */
+
+.submit-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 15px;
+  background-color: #4b7a42;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background-color: #c8cfc8;
+  cursor: not-allowed;
+}
+
+/* Red for validation errors */
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
+
+/* Green for success message */
+.success-message {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+/* Star Rating */
+.star-rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.star-rating .fa {
+  font-size: 24px;
+  color: #a09b9b;
+}
+
+.star-rating .fa-star {
+  color: gold;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-btn .icon {
+  color: black;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  background-color: white; /* ensures bg stays same */
+}
+
+.close-btn:hover .icon {
+  color: #3a4039; /* only icon color changes */
+}

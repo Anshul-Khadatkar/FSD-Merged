@@ -28,28 +28,46 @@ FSD-Merged/
 │
 ├── 2_Participation/                   # Participation Microservice
 │   ├── backend/                      # Spring Boot Backend
-│   │   ├── src/main/java/com/example/Participation/
-│   │   │   ├── Controller/           # REST Controllers
-│   │   │   ├── Entity/               # JPA Entities
-│   │   │   ├── Repository/           # Data Access Layer
-│   │   │   └── Service/              # Business Logic
+│   │   ├── src/main/java/com/example/
+│   │   │   ├── feedback/             # Feedback Module
+│   │   │   │   ├── Config/
+│   │   │   │   ├── Controller/
+│   │   │   │   ├── Entity/
+│   │   │   │   ├── Repository/
+│   │   │   │   └── Service/
+│   │   │   └── participation/        # Participation Module
+│   │   │       ├── Config/
+│   │   │       ├── Controller/
+│   │   │       ├── DTO/
+│   │   │       ├── Entity/
+│   │   │       ├── Repository/
+│   │   │       └── Service/
 │   │   ├── pom.xml                   # Maven Dependencies
 │   │   └── Dockerfile                # Docker Configuration
 │   └── frontend/                     # Angular Frontend
 │       ├── src/app/
 │       │   ├── auth/                 # Authentication Components
 │       │   ├── core/                 # Core Components & Services
+│       │   ├── dashboard/            # Dashboard Components
 │       │   ├── form/                 # Participation Form
+│       │   ├── shared/               # Shared Components
+│       │   │   └── feedbacks/
+│       │   │       └── components/
+│       │   │           └── feedback-form/
+│       │   │               ├── feedback-form.component.css
+│       │   │               ├── feedback-form.component.html
+│       │   │               ├── feedback-form.component.spec.ts
+│       │   │               └── feedback-form.component.ts
 │       │   └── services/             # Angular Services
 │       ├── package.json              # Node Dependencies
 │       └── Dockerfile                # Docker Configuration
 │
 ├── integration-config/               # Integration Configuration
-│   └── docker-compose.yml           # Docker Compose Setup
+│   └── docker-compose.yml            # Docker Compose Setup
 ├── shared-config/                    # Shared Configuration Files
-├── setup-integration.bat            # Windows Setup Script
-├── start-system.bat                 # Windows Start Script
-└── README.md                        # This file
+├── setup-integration.bat             # Windows Setup Script
+├── start-system.bat                  # Windows Start Script
+└── README.md                         # This file
 ```
 
 ## 🚀 Quick Start

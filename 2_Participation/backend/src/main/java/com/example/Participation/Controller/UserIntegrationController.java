@@ -1,11 +1,13 @@
-package com.example.Participation.Controller;
+package com.example.participation.Controller;
 
-import com.example.Participation.DTO.UserDTO;
-import com.example.Participation.Service.UserIntegrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.participation.DTO.UserDTO;
+import com.example.participation.Service.UserIntegrationService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

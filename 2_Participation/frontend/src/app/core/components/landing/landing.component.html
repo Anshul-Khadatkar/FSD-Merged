@@ -8,14 +8,16 @@
       <a class="nav-link active" href="#">Home</a>
       <div *ngIf="isAuthenticated" class="auth-info">
         <span class="welcome-text">Welcome, {{ username }}!</span>
-        <button class="nav-link logout-btn" (click)="logout()">Logout</button>
+        <button class="action-btn" (click)="openFeedback()">Give Feedback</button>
+
+        <!-- Feedback Modal -->
+        <div class="modal" *ngIf="showFeedback">
+          <app-feedback-form (close)="closeFeedback()"></app-feedback-form>
+        </div>
+
       </div>
-      <a
-        *ngIf="!isAuthenticated"
-        class="nav-link login-btn"
-        (click)="navigateToLogin()"
-        >Login</a
-      >
+      <button class="nav-link logout-btn" (click)="logout()">Logout</button>
+      <a *ngIf="!isAuthenticated" class="nav-link login-btn" (click)="navigateToLogin()">Login</a>
     </nav>
   </header>
 
