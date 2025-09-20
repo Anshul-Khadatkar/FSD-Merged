@@ -102,6 +102,30 @@ body, html {
   }
 }
 
+.result-btn {
+  background-color: #1976D2;
+  
+  &:hover {
+    background-color: #1565C0;
+  }
+}
+
+.manager-btn {
+  background-color: #FF9800;
+  
+  &:hover {
+    background-color: #F57C00;
+  }
+}
+
+.participant-btn {
+  background-color: #4CAF50;
+  
+  &:hover {
+    background-color: #388E3C;
+  }
+}
+
 .welcome-message {
   background-color: white;
   border-radius: 8px;
@@ -243,6 +267,28 @@ body, html {
 
   &:hover {
     background-color: #1B5E20;
+  }
+}
+
+.role-based-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  h2 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.3rem;
+  }
+}
+
+.manager-section, .participant-section {
+  .manager-actions, .participant-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 }
 

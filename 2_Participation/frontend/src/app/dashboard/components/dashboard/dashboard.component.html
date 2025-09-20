@@ -16,13 +16,25 @@
         <button class="action-btn" (click)="router.navigate(['/form'])">
           Participate
         </button>
+        <button class="action-btn result-btn" (click)="goToResults()" style="background-color: #1976D2; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer; font-weight: 500; transition: all 0.2s ease; margin: 0 0.5rem;">
+          📊 View Results
+        </button>
         <button class="action-btn" (click)="logout()">Logout</button>
       </div>
     </div>
 
+    <!-- Debug Info -->
+    <div style="background-color: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; font-size: 12px;">
+      <strong>Debug Info:</strong><br>
+      isEventManager: {{ isEventManager }}<br>
+      isParticipant: {{ isParticipant }}<br>
+      User Role: {{ userData.role }}<br>
+      Username: {{ userData.username }}
+    </div>
+
     <!-- User Welcome Message -->
     <div class="welcome-message">
-      <h2>Welcome participant!!!</h2>
+      <h2>Welcome to the Dashboard!!!</h2>
     </div>
 
     <!-- Available Events Section -->
@@ -60,6 +72,21 @@
             <p><strong>Head:</strong> {{ event.head }}</p>
             <p><strong>Location:</strong> {{ event.location }}</p>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Management Content -->
+    <div class="role-based-content">
+      <div class="manager-section">
+        <h2>Event Management</h2>
+        <div class="manager-actions">
+          <button class="action-btn manager-btn" (click)="goToResults()">
+            📊 Manage Results (Add/Remove)
+          </button>
+          <button class="action-btn manager-btn" (click)="viewAllParticipants()">
+            👥 View All Participants
+          </button>
         </div>
       </div>
     </div>
