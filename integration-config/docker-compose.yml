@@ -93,6 +93,35 @@ services:
     networks:
       - microservices-network
 
+  # Result Service
+  result-service:
+    build: ../3_Result/Backend
+    container_name: result-service
+    ports:
+      - "5005:5005"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_HOST=participation-db
+      - DB_PORT=5432
+      - DB_NAME=participationdb
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+    depends_on:
+      - participation-db
+    networks:
+      - microservices-network
+
+  # Result Frontend
+  result-frontend:
+    build: ../3_Result/Frontend
+    container_name: result-frontend
+    ports:
+      - "4202:80"
+    environment:
+      - RESULT_API_URL=http://localhost:5005
+    networks:
+      - microservices-network
+
 volumes:
   registration_data:
   participation_data:

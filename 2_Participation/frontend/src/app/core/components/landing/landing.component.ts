@@ -35,6 +35,16 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/form']);
   }
 
+  navigateToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
+
+  navigateToResults() {
+    // Navigate to the result page in same tab
+    const url = 'http://localhost:4202';
+    window.location.href = url;
+  }
+
   navigateToRegister() {
     this.router.navigate(['/register']);
   }

@@ -8,6 +8,7 @@
       <a class="nav-link active" href="#">Home</a>
       <div *ngIf="isAuthenticated" class="auth-info">
         <span class="welcome-text">Welcome, {{ username }}!</span>
+        <button class="action-btn" (click)="navigateToDashboard()">Dashboard</button>
         <button class="action-btn" (click)="openFeedback()">Give Feedback</button>
 
         <!-- Feedback Modal -->
@@ -35,7 +36,7 @@
               Your Ultimate Sports Management Platform
             </p>
           </div>
-          <!-- Feature Card -->
+          <!-- Feature Cards -->
           <div class="card-area">
             <div class="feature-card" (click)="navigateToForm()">
               <div class="feature-icon">
@@ -46,6 +47,18 @@
                 <p>
                   Participate in various sports events and competitions across
                   the platform
+                </p>
+              </div>
+            </div>
+            
+            <div class="feature-card" (click)="navigateToResults()" style="background: linear-gradient(135deg, #1976D2, #1565C0); color: white;">
+              <div class="feature-icon">
+                <span class="icon">📊</span>
+              </div>
+              <div class="feature-text">
+                <h3>View Results</h3>
+                <p>
+                  Check event results, rankings, and analytics
                 </p>
               </div>
             </div>

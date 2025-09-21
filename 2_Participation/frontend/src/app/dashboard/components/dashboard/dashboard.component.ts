@@ -20,6 +20,10 @@ export class DashboardComponent implements OnInit {
     role: 'USER',
   };
 
+  // All users can access all features
+  isEventManager: boolean = true;
+  isParticipant: boolean = true;
+
   availableEvents: any[] = [
     // Add available events here (your existing data)
     {
@@ -141,8 +145,12 @@ export class DashboardComponent implements OnInit {
   constructor(public router: Router, private authService: AuthService) {}
 
   ngOnInit() {
+    console.log('Dashboard component initialized');
+    
     // Check if user is logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    console.log('Is logged in:', isLoggedIn);
+    
     if (!isLoggedIn) {
       this.router.navigate(['/login']);
       return;
@@ -150,12 +158,25 @@ export class DashboardComponent implements OnInit {
 
     // Fetch user data from localStorage
     const userEmail = localStorage.getItem('username');
+    console.log('User email from localStorage:', userEmail);
+    
     if (userEmail) {
       this.userData.username = userEmail;
     }
 
+    // Check user role and set permissions
+    this.checkUserRole();
+    console.log('User role check - isEventManager:', this.isEventManager, 'isParticipant:', this.isParticipant);
+
     // Fetch participated events based on the user
     this.loadParticipatedEvents(this.userData.username);
+  }
+
+  checkUserRole() {
+    // All users have access to all features - no role restrictions
+    this.isEventManager = true;
+    this.isParticipant = true;
+    this.userData.role = 'USER';
   }
 
   loadParticipatedEvents(username: string) {
@@ -198,5 +219,19 @@ export class DashboardComponent implements OnInit {
   registerForEvent() {
     // Implement registration logic
     alert('Event registration will be available soon!');
+  }
+
+  goToResults() {
+    console.log('goToResults called');
+    
+    // Navigate to the result page in same tab
+    const url = 'http://localhost:4202';
+    console.log('Navigating to URL:', url);
+    window.location.href = url;
+  }
+
+  viewAllParticipants() {
+    // Navigate to a participants view (you can implement this later)
+    alert('View All Participants feature will be available soon!');
   }
 }
