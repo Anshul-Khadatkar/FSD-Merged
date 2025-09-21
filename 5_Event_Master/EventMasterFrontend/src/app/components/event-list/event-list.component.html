@@ -1,0 +1,64 @@
+<div class="event-list-container">
+   <div class="page-header">
+      <h1>All Events</h1>
+      <button class="btn btn-primary" routerLink="/event/add">
+         Add New Event
+      </button>
+   </div>
+
+   <!-- Loading State -->
+   <div *ngIf="loading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading events...</p>
+   </div>
+
+   <!-- Error State -->
+   <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+   </div>
+
+   <!-- Empty State -->
+   <div *ngIf="!loading && !error && events.length === 0" class="empty-state">
+      <h2>No events found</h2>
+      <p>Get started by adding your first event</p>
+      <button class="btn btn-primary" routerLink="/event/add">Add Event</button>
+   </div>
+
+   <!-- Events List -->
+   <div *ngIf="!loading && !error && events.length > 0" class="events-list">
+      <div *ngFor="let event of events" class="event-item">
+         <!-- ✅ Fix: Use getEventId helper method -->
+         <div class="event-main-info" 
+              (click)="getEventId(event) ? onEventClick($event, getEventId(event)!) : null">
+            <h3>{{ event.eventName }}</h3>
+            <div class="event-details">
+               <span class="detail-item">
+                  <strong>Type:</strong> {{ event.eventType }}
+               </span>
+               <span class="detail-item">
+                  <strong>Date:</strong> {{ formatDate(event.eventDay) }}
+               </span>
+               <span class="detail-item">
+                  <strong>Head ID:</strong> {{ event.eventHead }}
+               </span>
+            </div>
+            <div *ngIf="!getEventId(event)" class="text-warning">
+               <small>Warning: This event has no ID and cannot be edited or viewed.</small>
+            </div>
+         </div>
+
+         <div class="event-actions" (click)="$event.stopPropagation()">
+            <button class="btn btn-info btn-sm" 
+                    [routerLink]="['/event/edit', getEventId(event)]" 
+                    [disabled]="!getEventId(event)">
+               Edit
+            </button>
+            <button class="btn btn-danger btn-sm" 
+                    (click)="deleteEvent(getEventId(event)!)" 
+                    [disabled]="!getEventId(event)">
+               Delete
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

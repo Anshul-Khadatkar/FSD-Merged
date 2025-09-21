@@ -1,0 +1,20 @@
+<div class="app-container">
+  <!-- Main Navigation Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo">
+        <h1>Event Management</h1>
+      </div>
+      <nav class="nav-links">
+        <a routerLink="/events" routerLinkActive="active">All Events</a>
+        <a routerLink="/event/add" routerLinkActive="active">Add Event</a>
+        <a routerLink="/search" routerLinkActive="active">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
