@@ -1,0 +1,122 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">{{ isEditMode ? 'Edit Event' : 'Add New Event' }}</h2>
+    
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <!-- Success/Error Messages -->
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Event Name Field -->
+      <div class="form-group">
+        <label for="eventName">Event Name *</label>
+        <input
+          type="text"
+          id="eventName"
+          formControlName="eventName"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched
+          }"
+          placeholder="Enter event name"
+        />
+        <div
+          *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="eventForm.get('eventName')?.errors?.['required']">Event name is required</small>
+        </div>
+      </div>
+
+      <!-- Event Type Field -->
+      <div class="form-group">
+        <label for="eventType">Event Type *</label>
+        <select
+          id="eventType"
+          formControlName="eventType"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': eventForm.get('eventType')?.invalid && eventForm.get('eventType')?.touched
+          }"
+        >
+          <option value="">Select Type</option>
+          <option value="Sports">Sports</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Academic">Academic</option>
+          <option value="Workshop">Workshop</option>
+          <option value="Conference">Conference</option>
+          <option value="Competition">Competition</option>
+        </select>
+        <div
+          *ngIf="eventForm.get('eventType')?.invalid && eventForm.get('eventType')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="eventForm.get('eventType')?.errors?.['required']">Event type is required</small>
+        </div>
+      </div>
+
+      <!-- Event Head Field -->
+      <div class="form-group">
+        <label for="eventHead">Event Head ID *</label>
+        <input
+          type="number"
+          id="eventHead"
+          formControlName="eventHead"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': eventForm.get('eventHead')?.invalid && eventForm.get('eventHead')?.touched
+          }"
+          placeholder="Enter event head ID"
+          min="1"
+        />
+        <div
+          *ngIf="eventForm.get('eventHead')?.invalid && eventForm.get('eventHead')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="eventForm.get('eventHead')?.errors?.['required']">Event head ID is required</small>
+          <small *ngIf="eventForm.get('eventHead')?.errors?.['min']">Event head ID must be at least 1</small>
+        </div>
+      </div>
+
+      <!-- Event Day Field (changed from eventDate) -->
+      <div class="form-group">
+        <label for="eventDay">Event Day *</label>
+        <input
+          type="date"
+          id="eventDay"
+          formControlName="eventDay"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': eventForm.get('eventDay')?.invalid && eventForm.get('eventDay')?.touched
+          }"
+        />
+        <div
+          *ngIf="eventForm.get('eventDay')?.invalid && eventForm.get('eventDay')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="eventForm.get('eventDay')?.errors?.['required']">Event day is required</small>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        [disabled]="eventForm.invalid || loading"
+      >
+        {{ loading ? "Saving..." : (isEditMode ? "Update Event" : "Create Event") }}
+      </button>
+
+      <!-- Cancel Button -->
+      <div class="auth-links">
+        <button type="button" class="btn btn-secondary btn-block" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

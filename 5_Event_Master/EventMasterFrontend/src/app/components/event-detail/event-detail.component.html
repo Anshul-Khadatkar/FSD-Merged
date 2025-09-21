@@ -1,0 +1,63 @@
+<div class="event-detail-container">
+   <!-- Back Button -->
+   <button class="btn btn-secondary back-btn" routerLink="/events">
+      ← Back to Events
+   </button>
+
+   <!-- Loading State -->
+   <div *ngIf="loading" class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading event details...</p>
+   </div>
+
+   <!-- Error State -->
+   <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+   </div>
+
+   <!-- Event Details -->
+   <div *ngIf="event && !loading" class="event-detail-card">
+      <div class="event-header">
+         <h1>{{ event.eventName }}</h1>
+         <div class="event-actions">
+            <!-- ✅ Fix: Use helper method instead of direct property access -->
+            <button class="btn btn-info" (click)="editEvent()">
+               Edit Event
+            </button>
+            <button class="btn btn-danger" (click)="deleteEvent()">
+               Delete Event
+            </button>
+         </div>
+      </div>
+
+      <div class="event-info-grid">
+         <div class="info-section">
+            <h3>Event Information</h3>
+            <div class="info-item">
+               <label>Event ID:</label>
+               <span>{{ getEventId(event) }}</span>
+            </div>
+            <div class="info-item">
+               <label>Event Name:</label>
+               <span>{{ event.eventName }}</span>
+            </div>
+            <div class="info-item">
+               <label>Event Type:</label>
+               <span>{{ event.eventType }}</span>
+            </div>
+            <div class="info-item">
+               <label>Event Date:</label>
+               <span>{{ formatDate(event.eventDay) }}</span>
+            </div>
+         </div>
+
+         <div class="info-section">
+            <h3>Management</h3>
+            <div class="info-item">
+               <label>Event Head ID:</label>
+               <span>{{ event.eventHead }}</span>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
