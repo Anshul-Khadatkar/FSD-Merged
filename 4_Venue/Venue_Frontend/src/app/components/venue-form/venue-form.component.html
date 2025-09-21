@@ -1,0 +1,121 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">{{ isEditMode ? 'Edit Venue' : 'Add New Venue' }}</h2>
+    
+    <form [formGroup]="venueForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <!-- Success/Error Messages -->
+      <div *ngIf="message" class="alert alert-success">
+        {{ message }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Venue Type Field -->
+      <div class="form-group">
+        <label for="venueType">Venue Type *</label>
+        <select
+          id="venueType"
+          formControlName="venueType"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': venueForm.get('venueType')?.invalid && venueForm.get('venueType')?.touched
+          }"
+        >
+          <option value="">Select Type</option>
+          <option value="Stadium">Stadium</option>
+          <option value="Arena">Arena</option>
+          <option value="Field">Field</option>
+          <option value="Court">Court</option>
+          <option value="Hall">Hall</option>
+          <option value="Ground">Ground</option>
+        </select>
+        <div
+          *ngIf="venueForm.get('venueType')?.invalid && venueForm.get('venueType')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="venueForm.get('venueType')?.errors?.['required']">Venue type is required</small>
+        </div>
+      </div>
+
+      <!-- Venue Incharge Field -->
+      <div class="form-group">
+        <label for="venueIncharge">Venue Incharge *</label>
+        <input
+          type="text"
+          id="venueIncharge"
+          formControlName="venueIncharge"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': venueForm.get('venueIncharge')?.invalid && venueForm.get('venueIncharge')?.touched
+          }"
+          placeholder="Enter incharge name"
+        />
+        <div
+          *ngIf="venueForm.get('venueIncharge')?.invalid && venueForm.get('venueIncharge')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="venueForm.get('venueIncharge')?.errors?.['required']">Venue incharge is required</small>
+        </div>
+      </div>
+
+      <!-- Venue Facility Field -->
+      <div class="form-group">
+        <label for="venueFacility">Venue Facility *</label>
+        <input
+          type="text"
+          id="venueFacility"
+          formControlName="venueFacility"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': venueForm.get('venueFacility')?.invalid && venueForm.get('venueFacility')?.touched
+          }"
+          placeholder="Enter facility details"
+        />
+        <div
+          *ngIf="venueForm.get('venueFacility')?.invalid && venueForm.get('venueFacility')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="venueForm.get('venueFacility')?.errors?.['required']">Venue facility is required</small>
+        </div>
+      </div>
+
+      <!-- Seating Area Field -->
+      <div class="form-group">
+        <label for="seatingArea">Seating Area *</label>
+        <input
+          type="text"
+          id="seatingArea"
+          formControlName="seatingArea"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': venueForm.get('seatingArea')?.invalid && venueForm.get('seatingArea')?.touched
+          }"
+          placeholder="e.g., North Stand, Main Hall, 500 seats"
+        />
+        <div
+          *ngIf="venueForm.get('seatingArea')?.invalid && venueForm.get('seatingArea')?.touched"
+          class="error-message"
+        >
+          <small *ngIf="venueForm.get('seatingArea')?.errors?.['required']">Seating area is required</small>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn btn-primary btn-block"
+        [disabled]="venueForm.invalid || loading"
+      >
+        {{ loading ? "Saving..." : (isEditMode ? "Update Venue" : "Create Venue") }}
+      </button>
+
+      <!-- Cancel Button -->
+      <div class="auth-links">
+        <button type="button" class="btn btn-secondary btn-block" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="venue-detail-container">
+  <!-- Back Button -->
+  <button class="btn btn-secondary back-btn" routerLink="/venues">
+    ← Back to Venues
+  </button>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading venue details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <!-- Venue Details -->
+  <div *ngIf="venue && !loading" class="venue-detail-card">
+    <div class="venue-header">
+      <h1>{{ venue.venueType }}</h1>
+      <div class="venue-actions">
+        <button class="btn btn-info" [routerLink]="['/venue/edit', venue.id]">
+          Edit Venue
+        </button>
+        <button class="btn btn-danger" (click)="deleteVenue(venue.id!)">
+          Delete Venue
+        </button>
+      </div>
+    </div>
+
+    <div class="venue-info-grid">
+      <div class="info-section">
+        <h3>Basic Information</h3>
+        <div class="info-item">
+          <label>Venue Type:</label>
+          <span>{{ venue.venueType }}</span>
+        </div>
+        <div class="info-item">
+          <label>Venue Incharge:</label>
+          <span>{{ venue.venueIncharge }}</span>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>Facility & Seating</h3>
+        <div class="info-item">
+          <label>Venue Facility:</label>
+          <span>{{ venue.venueFacility }}</span>
+        </div>
+        <div class="info-item">
+          <label>Seating Area:</label>
+          <span>{{ venue.seatingArea }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

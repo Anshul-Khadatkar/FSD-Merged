@@ -1,0 +1,63 @@
+<div class="venue-list-container">
+  <div class="page-header">
+    <h1>All Venues</h1>
+    <button class="btn btn-primary" routerLink="/venue/add">Add New Venue</button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading venues...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && venues.length === 0" class="empty-state">
+    <h2>No venues found</h2>
+    <p>Get started by adding your first venue</p>
+    <button class="btn btn-primary" routerLink="/venue/add">Add Venue</button>
+  </div>
+
+  <!-- Venues List -->
+  <div *ngIf="!loading && !error && venues.length > 0" class="venues-list">
+    <div 
+      *ngFor="let venue of venues" 
+      class="venue-item"
+      (click)="onVenueClick($event, venue.id!)"
+    >
+      <div class="venue-main-info">
+        <h3>{{ venue.venueType }}</h3>
+        <div class="venue-details">
+          <span class="detail-item">
+            <strong>Incharge:</strong> {{ venue.venueIncharge }}
+          </span>
+          <span class="detail-item">
+            <strong>Facility:</strong> {{ venue.venueFacility }}
+          </span>
+          <span class="detail-item">
+            <strong>Seating:</strong> {{ venue.seatingArea }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="venue-actions" (click)="$event.stopPropagation()">
+        <button 
+          class="btn btn-info btn-sm" 
+          [routerLink]="['/venue/edit', venue.id]"
+        >
+          Edit
+        </button>
+        <button 
+          class="btn btn-danger btn-sm" 
+          (click)="deleteVenue(venue.id!)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
