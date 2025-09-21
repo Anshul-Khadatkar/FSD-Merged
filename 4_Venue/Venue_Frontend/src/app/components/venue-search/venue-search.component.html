@@ -1,0 +1,91 @@
+<div class="dashboard-wrapper">
+  <!-- Header -->
+  <nav class="navbar">
+    <div class="brand">Search Venues</div>
+    <div class="nav-buttons">
+      <button class="nav-btn" routerLink="/venues">All Venues</button>
+      <button class="nav-btn" routerLink="/venue/add">Add Venue</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Search Form -->
+    <div class="search-form-card">
+      <h2>🔍 Find Venues</h2>
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="searchType">Search By:</label>
+            <select id="searchType" class="form-control" formControlName="searchType">
+              <option value="type">Venue Type</option>
+              <option value="incharge">Incharge</option>
+              <option value="facility">Facility</option>
+              <option value="seating">Seating Area</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="searchValue">Search Value:</label>
+            <input 
+              type="text" 
+              id="searchValue" 
+              class="form-control" 
+              formControlName="searchValue"
+              placeholder="Enter search term...">
+          </div>
+          
+          <div class="form-group search-buttons">
+            <button type="submit" class="btn btn-primary" [disabled]="loading">
+              {{ loading ? 'Searching...' : 'Search' }}
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="clearSearch()">
+              Clear
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- No Results Message -->
+    <div *ngIf="searchPerformed && searchResults.length === 0 && !loading" class="alert alert-info">
+      No venues found matching your search criteria.
+    </div>
+
+    <!-- Search Results -->
+    <div class="events-section" *ngIf="searchResults.length > 0">
+      <div class="section-header">
+        <h2>Search Results ({{ searchResults.length }})</h2>
+      </div>
+      
+      <div class="venues-list">
+        <div 
+          *ngFor="let venue of searchResults" 
+          class="venue-item"
+          [routerLink]="['/venue/detail', venue.id]"
+        >
+          <div class="venue-main-info">
+            <h3>{{ venue.venueType }}</h3>
+            <div class="venue-details">
+              <span class="detail-item">
+                <strong>Incharge:</strong> {{ venue.venueIncharge }}
+              </span>
+              <span class="detail-item">
+                <strong>Facility:</strong> {{ venue.venueFacility }}
+              </span>
+              <span class="detail-item">
+                <strong>Seating:</strong> {{ venue.seatingArea }}
+              </span>
+            </div>
+          </div>
+          
+          <div class="venue-actions" (click)="$event.stopPropagation()">
+            <button class="btn btn-info btn-sm" [routerLink]="['/venue/edit', venue.id]">
+              Edit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
