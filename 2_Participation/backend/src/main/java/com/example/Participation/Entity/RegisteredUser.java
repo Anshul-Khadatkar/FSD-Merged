@@ -1,4 +1,4 @@
-package com.example.participation.Entity;
+package com.example.Participation.Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

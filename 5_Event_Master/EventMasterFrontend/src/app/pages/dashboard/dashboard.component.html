@@ -1,26 +1,34 @@
 <div class="dashboard-container">
   <div class="welcome-section">
     <h1>🎯 Event Management Dashboard</h1>
-    <p>Manage your sports events and activities</p>
-  </div>
-
-  <div class="quick-actions">
-    <div class="action-card" routerLink="/events">
-      <div class="action-icon">📋</div>
-      <h3>View All Events</h3>
-      <p>Browse and manage existing events</p>
-    </div>
-    
-    <div class="action-card" routerLink="/event/add">
-      <div class="action-icon">➕</div>
-      <h3>Add New Event</h3>
-      <p>Create a new event in the system</p>
+    <div *ngIf="isAuthenticated">
+      <span class="welcome-text">Welcome Event Master, {{ username }}!</span>
+      <p>Manage your sports events and activities</p>
     </div>
 
-    <div class="action-card" routerLink="/search">
-      <div class="action-icon">🔍</div>
-      <h3>Search Events</h3>
-      <p>Find events by name, type, or date</p>
+    <div class="quick-actions">
+      <div class="action-card" routerLink="/events">
+        <div class="action-icon">📋</div>
+        <h3>View All Events</h3>
+        <p>Browse and manage existing events</p>
+      </div>
+
+      <div class="action-card" routerLink="/event/add">
+        <div class="action-icon">➕</div>
+        <h3>Add New Event</h3>
+        <p>Create a new event in the system</p>
+      </div>
+
+      <div class="action-card" routerLink="/search">
+        <div class="action-icon">🔍</div>
+        <h3>Search Events</h3>
+        <p>Find events by name, type, or date</p>
+      </div>
+      <div class="action-card" routerLink="/equipment">
+        <div class="action-icon">🛠️</div>
+        <h3>Manage Equipment Inventory</h3>
+        <p>Browse and manage all sports equipment</p>
+      </div>
     </div>
   </div>
 </div>

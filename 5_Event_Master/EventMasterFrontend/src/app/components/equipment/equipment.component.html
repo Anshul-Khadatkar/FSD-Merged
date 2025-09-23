@@ -1,0 +1,381 @@
+<div class="landing-container">
+  <div class="header">
+    <button class="add-button" (click)="onCancel()">Back</button>
+    <h1 class="">Equipment Management List</h1>
+    <button class="add-button" (click)="onAddNew()">Add New Equipment</button>
+  </div>
+
+  <!-- Search -->
+  <div class="search-container">
+    <div class="search-options">
+      <select [(ngModel)]="searchOption" class="search-select">
+        <option value="eventName">Event Name</option>
+        <option value="equipment">Equipment</option>
+      </select>
+      <input
+        type="text"
+        [placeholder]="
+          searchOption === 'eventName'
+            ? 'Search by event name...'
+            : 'Search by equipment name...'
+        "
+        [(ngModel)]="searchText"
+        (input)="onSearch()"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <!-- Equipment List -->
+  <div class="equipment-list" *ngIf="!showForm">
+    <table>
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Condition</th>
+          <th>Cost</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Last Maintenance</th>
+          <th>Next Maintenance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipment of equipmentList">
+          <td>{{ equipment.eventName }}</td>
+          <td>{{ equipment.name }}</td>
+          <td>{{ equipment.description }}</td>
+          <td>{{ equipment.category }}</td>
+          <td>{{ equipment.quantity }}</td>
+          <td>{{ equipment.condition }}</td>
+          <td>
+            {{ equipment.costPerUnit | currency : "INR" : "symbol" : "1.2-2" }}
+          </td>
+          <td>{{ equipment.location }}</td>
+          <td>{{ equipment.status }}</td>
+          <td>{{ equipment.lastMaintenance | date : "short" }}</td>
+          <td>{{ equipment.nextMaintenance | date : "short" }}</td>
+          <td>
+            <button class="edit-button" (click)="onEdit(equipment)">
+              Edit
+            </button>
+            <button
+              class="delete-button"
+              (click)="equipment.id ? onDelete(+equipment.id) : null"
+              [disabled]="!equipment.id"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Equipment Form -->
+  <div class="equipment-form" *ngIf="showForm">
+    <div class="form-header">
+      <h2>{{ isEditing ? "Edit" : "Add" }} Equipment</h2>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+
+    <form #equipmentForm="ngForm" (ngSubmit)="onSave(equipmentForm)" novalidate>
+      <div class="form-group">
+        <label for="eventName">Event Name *</label>
+        <input
+          type="text"
+          id="eventName"
+          [(ngModel)]="selectedEquipment.eventName"
+          name="eventName"
+          class="form-control"
+          placeholder="Enter Event Name"
+          required
+          #eventName="ngModel"
+        />
+        <div
+          *ngIf="
+            eventName.invalid &&
+            (eventName.dirty || eventName.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Event Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Equipment Type *</label>
+        <select
+          id="name"
+          [(ngModel)]="selectedEquipment.name"
+          name="name"
+          class="form-control"
+          required
+          #name="ngModel"
+        >
+          <option value="">Select Equipment</option>
+          <option *ngFor="let item of equipmentNames" [value]="item">
+            {{ item }}
+          </option>
+        </select>
+        <div
+          *ngIf="name.invalid && (name.dirty || name.touched || formSubmitted)"
+          class="error-message"
+        >
+          Equipment Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea
+          id="description"
+          [(ngModel)]="selectedEquipment.description"
+          name="description"
+          class="form-control"
+          placeholder="Enter equipment description"
+          required
+          #description="ngModel"
+        ></textarea>
+        <div
+          *ngIf="
+            description.invalid &&
+            (description.dirty || description.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Description is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category *</label>
+        <select
+          id="category"
+          [(ngModel)]="selectedEquipment.category"
+          name="category"
+          class="form-control"
+          required
+          #category="ngModel"
+        >
+          <option value="">Select Category</option>
+          <option *ngFor="let dept of departments" [value]="dept">
+            {{ dept }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            category.invalid &&
+            (category.dirty || category.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Category is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Quantity *</label>
+        <input
+          type="number"
+          id="quantity"
+          [(ngModel)]="selectedEquipment.quantity"
+          name="quantity"
+          class="form-control"
+          min="1"
+          step="1"
+          required
+          #quantity="ngModel"
+        />
+        <div
+          *ngIf="
+            quantity.invalid &&
+            (quantity.dirty || quantity.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          <span *ngIf="quantity.errors?.['required']"
+            >Quantity is required</span
+          >
+          <span *ngIf="quantity.errors?.['min']"
+            >Quantity must be at least 1</span
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="condition">Condition *</label>
+        <input
+          type="text"
+          id="condition"
+          [(ngModel)]="selectedEquipment.condition"
+          name="condition"
+          class="form-control"
+          placeholder="Enter equipment condition"
+          required
+          #condition="ngModel"
+        />
+        <div
+          *ngIf="
+            condition.invalid &&
+            (condition.dirty || condition.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Condition is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="costPerUnit">Cost Per Unit *</label>
+        <input
+          type="number"
+          id="costPerUnit"
+          [(ngModel)]="selectedEquipment.costPerUnit"
+          name="costPerUnit"
+          class="form-control"
+          min="0"
+          step="0.01"
+          required
+          #costPerUnit="ngModel"
+        />
+        <div
+          *ngIf="
+            costPerUnit.invalid &&
+            (costPerUnit.dirty || costPerUnit.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          <span *ngIf="costPerUnit.errors?.['required']"
+            >Cost Per Unit is required</span
+          >
+          <span *ngIf="costPerUnit.errors?.['min']"
+            >Cost must be 0 or greater</span
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location *</label>
+        <input
+          type="text"
+          id="location"
+          [(ngModel)]="selectedEquipment.location"
+          name="location"
+          class="form-control"
+          placeholder="Enter equipment location"
+          required
+          #location="ngModel"
+        />
+        <div
+          *ngIf="
+            location.invalid &&
+            (location.dirty || location.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Location is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status *</label>
+        <select
+          id="status"
+          [(ngModel)]="selectedEquipment.status"
+          name="status"
+          class="form-control"
+          required
+          #status="ngModel"
+        >
+          <option value="OPERATIONAL">Operational</option>
+          <option value="MAINTENANCE">Maintenance</option>
+          <option value="OUT_OF_SERVICE">Out of Service</option>
+        </select>
+        <div
+          *ngIf="
+            status.invalid && (status.dirty || status.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Status is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastMaintenance">Last Maintenance *</label>
+        <input
+          type="datetime-local"
+          id="lastMaintenance"
+          [(ngModel)]="selectedEquipment.lastMaintenanceString"
+          name="lastMaintenance"
+          class="form-control"
+          required
+          #lastMaintenance="ngModel"
+        />
+        <div
+          *ngIf="
+            lastMaintenance.invalid &&
+            (lastMaintenance.dirty || lastMaintenance.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Last Maintenance date is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="nextMaintenance">Next Maintenance *</label>
+        <input
+          type="datetime-local"
+          id="nextMaintenance"
+          [(ngModel)]="selectedEquipment.nextMaintenanceString"
+          name="nextMaintenance"
+          class="form-control"
+          required
+          #nextMaintenance="ngModel"
+        />
+        <div
+          *ngIf="
+            nextMaintenance.invalid &&
+            (nextMaintenance.dirty || nextMaintenance.touched || formSubmitted)
+          "
+          class="error-message"
+        >
+          Next Maintenance date is required
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="save-button"
+          [disabled]="isLoading || !equipmentForm.valid"
+        >
+          <span *ngIf="isLoading">Saving...</span>
+          <span *ngIf="!isLoading">{{ isEditing ? "Update" : "Save" }}</span>
+        </button>
+        <button
+          type="button"
+          class="cancel-button"
+          (click)="onCancel()"
+          [disabled]="isLoading"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

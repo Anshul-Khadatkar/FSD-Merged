@@ -4,6 +4,7 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { EventFormComponent } from './components/event-form/event-form.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
 import { EventSearchComponent } from './components/event-search/event-search.component';
+import { EquipmentComponent } from './components/equipment/equipment.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'event/add', component: EventFormComponent },
   { path: 'event/edit/:id', component: EventFormComponent },
   { path: 'event/detail/:id', component: EventDetailComponent },
-  { path: 'search', component: EventSearchComponent }
+  { path: 'search', component: EventSearchComponent },
+  { path: 'equipment', component: EquipmentComponent },
 ];

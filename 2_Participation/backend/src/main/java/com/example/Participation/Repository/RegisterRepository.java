@@ -1,8 +1,8 @@
-package com.example.participation.Repository;
+package com.example.Participation.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.participation.Entity.Register;
+import com.example.Participation.Entity.Register;
 
 import java.util.Optional;
 

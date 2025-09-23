@@ -1,6 +1,6 @@
-# Complete Microservices System - Registration, Participation & Results
+# Complete Microservices System - Registration, Participation, Results & Event Master
 
-This is a comprehensive microservices system that includes Registration, Participation, and Results services with full integration and port redirection.
+This is a comprehensive microservices system that includes Registration, Participation, Results, and Event Master services with full integration and port redirection.
 
 ## 🏗️ System Architecture
 
@@ -8,6 +8,7 @@ This is a comprehensive microservices system that includes Registration, Partici
 - **Registration Service**: User registration and authentication (Port 8080, Frontend 4200)
 - **Participation Service**: Event participation and feedback forms (Port 8081, Frontend 4201)
 - **Result Service**: Analytics, results tracking, and reporting (Port 5005, Frontend 4202)
+- **Event Master Service**: Event management and equipment tracking (Port 8085, Frontend 4204)
 - **PostgreSQL Database**: Shared database for all services (Port 5432)
 
 ### Port Configuration
@@ -16,6 +17,7 @@ This is a comprehensive microservices system that includes Registration, Partici
 | Registration | 8080 | 4200 | User management and authentication |
 | Participation | 8081 | 4201 | Event participation and feedback |
 | Results | 5005 | 4202 | Analytics and result tracking |
+| Event Master | 8085 | 4204 | Event management and equipment tracking |
 
 ## 🚀 Quick Start
 
@@ -44,6 +46,10 @@ cd 2_Participation/backend && ./mvnw spring-boot:run --server.port=8081
 # Start Result Service
 cd 3_Result/Frontend && npm install && ng serve --port 4202
 cd 3_Result/Backend && ./mvnw spring-boot:run --server.port=5005
+
+# Start Event Master Service
+cd 5_Event_Master/EventMasterFrontend && npx npm install && ng serve --port 4204
+cd 5_Event_Master/EventMasterBackend && ./mvnw spring-boot:run --server.port=8085
 ```
 
 ## 🔄 User Flow
@@ -61,6 +67,11 @@ cd 3_Result/Backend && ./mvnw spring-boot:run --server.port=5005
    - Track participation data
    - Generate reports
 
+4. **Event Master** (http://localhost:4204)
+   - Manage events: Create, edit, and view events
+   - Equipment management: Track and manage equipment
+   - Event scheduling and coordination
+
 ## 🔧 Configuration
 
 ### Database Configuration
@@ -73,7 +84,7 @@ All services use the same PostgreSQL database (`participationdb`) for seamless d
 
 ### CORS Configuration
 All services are configured with CORS to allow cross-origin requests:
-- Origins: http://localhost:4200, http://localhost:4201, http://localhost:4202
+- Origins: http://localhost:4200, http://localhost:4201, http://localhost:4202, http://localhost:4204
 - Methods: GET, POST, PUT, DELETE, OPTIONS
 - Headers: All headers allowed
 
@@ -96,6 +107,14 @@ docker build -t result-service .
 # Build Result Frontend
 cd 3_Result/Frontend
 docker build -t result-frontend .
+
+# Build Event Master Service
+cd 5_Event_Master/EventMasterBackend
+docker build -t event-master-service .
+
+# Build Event Master Frontend
+cd 5_Event_Master/EventMasterFrontend
+docker build -t event-master-frontend .
 ```
 
 ## 🧪 Testing
@@ -111,6 +130,7 @@ This script will test all backend APIs and display their status.
 - Registration API: http://localhost:8080/api/auth/health
 - Participation API: http://localhost:8081/api/participation/health
 - Result API: http://localhost:5005/api/results/health
+- Event Master API: http://localhost:8085/api/events/health
 
 ## 📁 Project Structure
 
@@ -125,6 +145,12 @@ FSD-Merged/
 ├── 3_Result/               # Result service
 │   ├── Backend/            # Backend (Spring Boot)
 │   └── Frontend/           # Frontend (Angular)
+├── 4_Venue/                # Venue service
+│   ├── Venue_Backend/      # Backend (Spring Boot)
+│   └── Venue_Frontend/     # Frontend (Angular)
+├── 5_Event_Master/         # Event Master service
+│   ├── EventMasterBackend/ # Backend (Spring Boot)
+│   └── EventMasterFrontend/# Frontend (Angular)
 ├── integration-config/     # Docker configuration
 ├── start-all-services.bat  # Complete system startup
 ├── start-system.bat        # Updated system startup
@@ -143,7 +169,7 @@ FSD-Merged/
 ## 🛠️ Troubleshooting
 
 ### Common Issues
-1. **Port Conflicts**: Ensure no other services are using ports 4200, 4201, 4202, 8080, 8081, 5005
+1. **Port Conflicts**: Ensure no other services are using ports 4200, 4201, 4202, 4204, 8080, 8081, 5005, 8085
 2. **Database Connection**: Verify PostgreSQL is running on port 5432
 3. **CORS Errors**: Check that all services are running on the correct ports
 4. **Service Dependencies**: Start services in the correct order (database → backends → frontends)
@@ -159,11 +185,13 @@ FSD-Merged/
 - Registration: http://localhost:8080/api/auth/health
 - Participation: http://localhost:8081/api/participation/health
 - Results: http://localhost:5005/api/results/health
+- Event Master: http://localhost:8085/api/events/health
 
 ### Frontend Access
 - Registration: http://localhost:4200
 - Participation: http://localhost:4201
 - Results: http://localhost:4202
+- Event Master: http://localhost:4204
 
 ## 🎯 Features
 
@@ -185,6 +213,14 @@ FSD-Merged/
 - Data visualization
 - Cross-service data integration
 
+### Event Master Service
+- Event creation and management
+- Event scheduling and coordination
+- Equipment tracking and management
+- Event categories and types
+- Event search and filtering
+- Equipment assignment to events
+
 ## 🔐 Security
 
 - JWT-based authentication across all services
@@ -199,4 +235,3 @@ FSD-Merged/
 - The system supports both local development and Docker deployment
 - Database schema is automatically created and updated
 - All services share the same database for data consistency
-

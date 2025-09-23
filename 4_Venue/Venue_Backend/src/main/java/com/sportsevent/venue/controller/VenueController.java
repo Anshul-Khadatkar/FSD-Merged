@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/venues")
-@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:3000" })
+@CrossOrigin(origins = { "http://localhost:4204", "http://localhost:4200", "http://localhost:3000" })
 public class VenueController {
 
    private static final Logger logger = LoggerFactory.getLogger(VenueController.class);

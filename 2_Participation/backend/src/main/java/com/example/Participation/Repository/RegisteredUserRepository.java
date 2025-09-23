@@ -1,9 +1,9 @@
-package com.example.participation.Repository;
+package com.example.Participation.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.participation.Entity.RegisteredUser;
+import com.example.Participation.Entity.RegisteredUser;
 
 import java.util.Optional;
 

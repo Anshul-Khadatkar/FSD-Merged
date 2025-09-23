@@ -14,7 +14,7 @@
   align-items: center;
   padding: 0.8rem 2rem;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .brand {
@@ -59,7 +59,7 @@
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .search-form-card h2 {
@@ -126,7 +126,7 @@
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .section-header {
@@ -149,6 +149,7 @@
 }
 
 .event-item {
+  min-height: fit-content;
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 1.25rem;
@@ -164,7 +165,7 @@
 
 .event-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .event-main-info {
@@ -215,26 +216,26 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .search-buttons {
     justify-content: center;
   }
-  
+
   .search-buttons .btn {
     flex: 1;
   }
-  
+
   .event-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  
+
   .event-details {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .event-actions {
     width: 100%;
     justify-content: center;
@@ -245,7 +246,7 @@
   .container {
     padding: 1rem;
   }
-  
+
   .search-form-card {
     padding: 1.5rem;
   }

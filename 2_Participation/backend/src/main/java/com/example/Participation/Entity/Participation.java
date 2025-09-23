@@ -1,4 +1,4 @@
-package com.example.participation.Entity;
+package com.example.Participation.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,31 +13,31 @@ public class Participation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long P_ID;  // Auto-incremented Primary Key
+    private Long P_ID; // Auto-incremented Primary Key
 
     @Column(name = "referral_source")
-    private String referralSource;  // Referral source
+    private String referralSource; // Referral source
 
     @Column(name = "med_cond")
-    private String medicalCondition;  // Medical condition
+    private String medicalCondition; // Medical condition
 
     @Column(name = "department")
-    private String department;  // Department
+    private String department; // Department
 
     @Column(name = "event")
-    private String eventName;  // eventName name
+    private String eventName; // eventName name
 
     @Column(name = "gender")
-    private String gender;  // Gender
+    private String gender; // Gender
 
     @Column(name = "type")
-    private String type;  // Participation type (Internal/External)
+    private String type; // Participation type (Internal/External)
 
     @Column(name = "age")
-    private Integer age;  // Age
+    private Integer age; // Age
 
-    @Column(name = "username", nullable = false)  // Ensure the username is mapped to a column in the database
-    private String username;  // Username (email or identifier)
+    @Column(name = "username", nullable = false) // Ensure the username is mapped to a column in the database
+    private String username; // Username (email or identifier)
 
     // Getters and Setters
     public Long getP_ID() {

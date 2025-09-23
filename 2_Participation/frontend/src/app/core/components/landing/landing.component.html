@@ -8,17 +8,25 @@
       <a class="nav-link active" href="#">Home</a>
       <div *ngIf="isAuthenticated" class="auth-info">
         <span class="welcome-text">Welcome, {{ username }}!</span>
-        <button class="action-btn" (click)="navigateToDashboard()">Dashboard</button>
-        <button class="action-btn" (click)="openFeedback()">Give Feedback</button>
+        <button class="action-btn" (click)="navigateToDashboard()">
+          Dashboard
+        </button>
+        <button class="action-btn" (click)="openFeedback()">
+          Give Feedback
+        </button>
 
         <!-- Feedback Modal -->
         <div class="modal" *ngIf="showFeedback">
           <app-feedback-form (close)="closeFeedback()"></app-feedback-form>
         </div>
-
       </div>
       <button class="nav-link logout-btn" (click)="logout()">Logout</button>
-      <a *ngIf="!isAuthenticated" class="nav-link login-btn" (click)="navigateToLogin()">Login</a>
+      <a
+        *ngIf="!isAuthenticated"
+        class="nav-link login-btn"
+        (click)="navigateToLogin()"
+        >Login</a
+      >
     </nav>
   </header>
 
@@ -50,16 +58,21 @@
                 </p>
               </div>
             </div>
-            
-            <div class="feature-card" (click)="navigateToResults()" style="background: linear-gradient(135deg, #1976D2, #1565C0); color: white;">
+
+            <div
+              class="feature-card"
+              (click)="navigateToResults()"
+              style="
+                background: linear-gradient(135deg, #1976d2, #1565c0);
+                color: white;
+              "
+            >
               <div class="feature-icon">
                 <span class="icon">📊</span>
               </div>
               <div class="feature-text">
                 <h3>View Results</h3>
-                <p>
-                  Check event results, rankings, and analytics
-                </p>
+                <p>Check event results, rankings, and analytics</p>
               </div>
             </div>
           </div>
