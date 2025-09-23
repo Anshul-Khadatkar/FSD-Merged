@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # PostgreSQL Database for Registration Service
@@ -122,9 +122,101 @@ services:
     networks:
       - microservices-network
 
+  # PostgreSQL Database for Venue Service
+  venue-db:
+    image: postgres:15
+    container_name: venue-db
+    environment:
+      POSTGRES_DB: venuedb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5434:5432"
+    volumes:
+      - venue_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  # Venue Service
+  venue-service:
+    build: ../4_Venue/Venue_Backend
+    container_name: venue-service
+    ports:
+      - "8084:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_HOST=venue-db
+      - DB_PORT=5432
+      - DB_NAME=venuedb
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+    depends_on:
+      - venue-db
+    networks:
+      - microservices-network
+
+  # Venue Frontend
+  venue-frontend:
+    build: ../4_Venue/Venue_Frontend
+    container_name: venue-frontend
+    ports:
+      - "4203:80"
+    environment:
+      - VENUE_API_URL=http://localhost:8084
+    networks:
+      - microservices-network
+
+  # PostgreSQL Database for Event Master Service
+  event-master-db:
+    image: postgres:15
+    container_name: event-master-db
+    environment:
+      POSTGRES_DB: eventMasterDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5435:5432"
+    volumes:
+      - event_master_data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+
+  # Event Master Service
+  event-master-service:
+    build: ../5_Event_Master/EventMasterBackend
+    container_name: event-master-service
+    ports:
+      - "8085:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_HOST=event-master-db
+      - DB_PORT=5432
+      - DB_NAME=eventMasterDB
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - VENUE_SERVICE_URL=http://venue-service:8080
+    depends_on:
+      - event-master-db
+    networks:
+      - microservices-network
+
+  # Event Master Frontend
+  event-master-frontend:
+    build: ../5_Event_Master/EventMasterFrontend
+    container_name: event-master-frontend
+    ports:
+      - "4204:80"
+    environment:
+      - EVENT_MASTER_API_URL=http://localhost:8085
+      - VENUE_API_URL=http://localhost:8084
+    networks:
+      - microservices-network
+
 volumes:
   registration_data:
   participation_data:
+  venue_data:
+  event_master_data:
 
 networks:
   microservices-network:

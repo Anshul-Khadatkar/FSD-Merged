@@ -2,13 +2,15 @@
   <!-- Main Navigation Header -->
   <header class="header">
     <div class="header-container">
-      <div class="logo">
-        <h1>Event Management</h1>
+      <div class="brand" (click)="Main()">
+        <span class="brand-text">SportsHub </span>
       </div>
       <nav class="nav-links">
+        <a routerLink="/equipment" routerLinkActive="active">All Equipment</a>
         <a routerLink="/events" routerLinkActive="active">All Events</a>
         <a routerLink="/event/add" routerLinkActive="active">Add Event</a>
         <a routerLink="/search" routerLinkActive="active">Search</a>
+        <button (click)="logout()" class="logout-btns">Logout</button>
       </nav>
     </div>
   </header>
@@ -17,4 +19,66 @@
   <main class="main-content">
     <router-outlet></router-outlet>
   </main>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>SportsHub</h3>
+        <p>
+          Your all-in-one platform for sports team management, player tracking,
+          and event organization.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/register">Register</a></li>
+          <li><a routerLink="/dashboard">Team Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Features</h4>
+        <ul class="footer-links">
+          <li><a href="#">Team Management</a></li>
+          <li><a href="#">Player Statistics</a></li>
+          <li><a href="#">Event Scheduling</a></li>
+          <li><a href="#">Performance Analytics</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Newsletter</h4>
+        <p>Stay updated with the latest sports management tips and features.</p>
+        <div class="newsletter-form">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="newsletter-input"
+          />
+          <button class="newsletter-btn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 SportSync. All rights reserved.</p>
+    </div>
+  </footer>
 </div>

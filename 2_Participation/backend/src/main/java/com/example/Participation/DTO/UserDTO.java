@@ -1,4 +1,4 @@
-package com.example.participation.DTO;
+package com.example.Participation.DTO;
 
 import java.time.LocalDateTime;
 

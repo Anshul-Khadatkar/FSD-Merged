@@ -15,14 +15,14 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
+@CrossOrigin(origins = { "http://localhost:4204", "http://localhost:4203", "http://localhost:3000" })
 public class EventController {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(EventController.class);
-    
+
     @Autowired
     private EventService eventService;
-    
+
     // Get all events
     @GetMapping
     public ResponseEntity<List<Event>> getAllEvents() {
@@ -35,7 +35,7 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     // Get event by ID
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id) {
@@ -49,7 +49,7 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     // Add new event
     @PostMapping
     public ResponseEntity<?> addEvent(@RequestBody Event event) {
@@ -71,7 +71,7 @@ public class EventController {
                     .body(Map.of("error", "Failed to add event"));
         }
     }
-    
+
     // Update event
     @PutMapping("/{id}")
     public ResponseEntity<?> updateEvent(@PathVariable Long id, @RequestBody Event eventDetails) {
@@ -88,7 +88,7 @@ public class EventController {
                     .body(Map.of("error", "Failed to update event"));
         }
     }
-    
+
     // Delete event
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteEvent(@PathVariable Long id) {
@@ -105,7 +105,7 @@ public class EventController {
                     .body(Map.of("error", "Failed to delete event"));
         }
     }
-    
+
     // Get events by type
     @GetMapping("/type/{eventType}")
     public ResponseEntity<List<Event>> getEventsByType(@PathVariable String eventType) {
@@ -118,7 +118,7 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     // Get events by head
     @GetMapping("/head/{eventHead}")
     public ResponseEntity<List<Event>> getEventsByHead(@PathVariable Long eventHead) {
@@ -131,7 +131,7 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     // Get events by date
     @GetMapping("/date/{date}")
     public ResponseEntity<List<Event>> getEventsByDate(@PathVariable String date) {
@@ -145,7 +145,7 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     // Search events by name
     @GetMapping("/search")
     public ResponseEntity<List<Event>> searchEvents(@RequestParam String name) {

@@ -44,6 +44,11 @@ export class LandingComponent implements OnInit {
     const url = 'http://localhost:4202';
     window.location.href = url;
   }
+    navigateToEquipment() {
+    // Navigate to the result page in same tab
+    const url = 'http://localhost:4204';
+    window.location.href = url;
+  }
 
   navigateToRegister() {
     this.router.navigate(['/register']);

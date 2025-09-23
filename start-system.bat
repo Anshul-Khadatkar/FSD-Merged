@@ -5,8 +5,9 @@ echo.
 
 echo 📋 System Overview:
 echo   - Registration Service (Port 8080, Frontend 4200)
-echo   - Participation Service (Port 8081, Frontend 4201) 
+echo   - Participation Service (Port 8081, Frontend 4201)
 echo   - Result Service (Port 5005, Frontend 4202)
+echo   - Event Master Service (Port 8085, Frontend 4204)
 echo   - PostgreSQL Database (Port 5432)
 echo.
 
@@ -46,6 +47,18 @@ timeout /t 10 /nobreak >nul
 echo 📋 Starting Result Service Backend...
 start "Result Backend" cmd /k "cd 3_Result\Backend && ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=5005"
 
+echo ⏳ Waiting 10 seconds...
+timeout /t 10 /nobreak >nul
+
+echo 📋 Starting Event Master Service Frontend...
+start "Event Master Frontend" cmd /k "cd 5_Event_Master\EventMasterFrontend && npx npm install && npx ng serve --port 4204"
+
+echo ⏳ Waiting 5 seconds...
+timeout /t 5 /nobreak >nul
+
+echo 📋 Starting Event Master Service Backend...
+start "Event Master Backend" cmd /k "cd 5_Event_Master\EventMasterBackend && ./mvnw spring-boot:run -Dspring-boot.run.arguments=--server.port=8085"
+
 echo.
 echo 🎉 All services are starting!
 echo.
@@ -57,6 +70,8 @@ echo   Result & Analytics Dashboard: http://localhost:4202
 echo   Registration API: http://localhost:8080
 echo   Participation API: http://localhost:8081
 echo   Result API: http://localhost:5005
+echo   Event Master Dashboard: http://localhost:4204
+echo   Event Master API: http://localhost:8085
 echo.
 
 echo 👤 Complete User Flow:
@@ -66,6 +81,8 @@ echo   3. Existing users: Click "Already Registered? Login"
 echo   4. After login: Automatically redirected to participation form
 echo   5. Fill participation form (username pre-filled) → Submit
 echo   6. View results and analytics at http://localhost:4202
+echo   7. Go to http://localhost:4204 (Event Master Dashboard)
+echo   8. Manage events: Add, edit, or view event details
 echo.
 
 echo 🔄 Integration Features:

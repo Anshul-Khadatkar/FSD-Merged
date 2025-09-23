@@ -1,8 +1,7 @@
-package com.example.participation.Entity;
+package com.example.Participation.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
 
 @Entity
 public class Register {

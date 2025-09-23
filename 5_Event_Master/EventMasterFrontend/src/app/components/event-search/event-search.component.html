@@ -1,26 +1,31 @@
 <!-- Inside the events list section -->
-<div *ngFor="let event of searchResults" class="event-item" 
-     [routerLink]="['/event/detail', getEventId(event)]">
-   <div class="event-main-info">
-      <h3>{{ event.eventName }}</h3>
-      <div class="event-details">
-         <span class="detail-item">
-            <strong>Type:</strong> {{ event.eventType }}
-         </span>
-         <div class="info-item">
-            <label>Event Date:</label>
-            <span>{{ formatDate(event.eventDay) }}</span>
-         </div>
-         <span class="detail-item">
-            <strong>Head ID:</strong> {{ event.eventHead }}
-         </span>
+<div
+  *ngFor="let event of searchResults"
+  class="event-item"
+  [routerLink]="['/event/detail', getEventId(event)]"
+>
+  <div class="event-main-info">
+    <h3>{{ event.eventName }}</h3>
+    <div class="event-details">
+      <span class="detail-item">
+        <strong>Type:</strong> {{ event.eventType }}
+      </span>
+      <div class="info-item">
+        <label>Event Date:</label>
+        <span>{{ formatDate(event.eventDay) }}</span>
       </div>
-   </div>
+      <span class="detail-item">
+        <strong>Head ID:</strong> {{ event.eventHead }}
+      </span>
+    </div>
+  </div>
 
-   <div class="event-actions" (click)="$event.stopPropagation()">
-      <button class="btn btn-info btn-sm" 
-              [routerLink]="['/event/edit', getEventId(event)]">
-         Edit
-      </button>
-   </div>
+  <div class="event-actions" (click)="$event.stopPropagation()">
+    <button
+      class="btn btn-info btn-sm"
+      [routerLink]="['/event/edit', getEventId(event)]"
+    >
+      Edit
+    </button>
+  </div>
 </div>

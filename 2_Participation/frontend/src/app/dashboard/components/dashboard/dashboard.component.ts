@@ -146,11 +146,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     console.log('Dashboard component initialized');
-    
+
     // Check if user is logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     console.log('Is logged in:', isLoggedIn);
-    
+
     if (!isLoggedIn) {
       this.router.navigate(['/login']);
       return;
@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit {
     // Fetch user data from localStorage
     const userEmail = localStorage.getItem('username');
     console.log('User email from localStorage:', userEmail);
-    
+
     if (userEmail) {
       this.userData.username = userEmail;
     }
@@ -183,17 +183,17 @@ export class DashboardComponent implements OnInit {
     this.authService.getParticipatedEvents(username).subscribe({
       next: (eventNames: string[]) => {
         const normalizedEventNames = eventNames.map(name => name.toLowerCase());
-  
+
         // 👇 Debug logs
         console.log('Available events:', this.availableEvents.map(e => e.name));
         console.log('Participated event names (from backend):', eventNames);
         console.log('Normalized event names:', normalizedEventNames);
-  
+
         // ✅ Filtering participated events
         this.participatedEvents = this.availableEvents.filter(event =>
           normalizedEventNames.includes(event.name.toLowerCase())
         );
-  
+
         console.log('Filtered participated events:', this.participatedEvents); // 👈 Final debug
       },
       error: (error) => {
@@ -202,8 +202,8 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
-  
+
+
   logout() {
     // Clear all user data
     localStorage.removeItem('username');
@@ -223,12 +223,22 @@ export class DashboardComponent implements OnInit {
 
   goToResults() {
     console.log('goToResults called');
-    
+
     // Navigate to the result page in same tab
     const url = 'http://localhost:4202';
     console.log('Navigating to URL:', url);
     window.location.href = url;
   }
+
+   Equipment() {
+    console.log('goToResults called');
+
+    // Navigate to the result page in same tab
+    const url = 'http://localhost:4204';
+    console.log('Navigating to URL:', url);
+    window.location.href = url;
+  }
+
 
   viewAllParticipants() {
     // Navigate to a participants view (you can implement this later)

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -7,6 +7,19 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {}
+export class DashboardComponent implements OnInit {
+  username = '';
+  isAuthenticated = false;
+  ngOnInit(): void {
+    // Check authentication status
+    const storedUsername = localStorage.getItem('username');
+    const storedToken = localStorage.getItem('authToken');
+
+    if (storedUsername && storedToken) {
+      this.username = storedUsername;
+      this.isAuthenticated = true;
+    }
+  }
+}
